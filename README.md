@@ -1,3 +1,18 @@
+## pjax that plays nice
+
+pjax is great, but it doesn't always play nice when you drop it into an existing app that already uses pushState. To address problems we ran into at yerdle, we made 2 changes to pjax:
+
+#### Event listeners that were added by JS frameworks (i.e. Backbone) were lost when navigating back.
+
+* **Fix:** We removed pjax's DOM cache: instead of replacing the container with cached DOM elements, we fire another pjax request on popState. Not ideal, but some might find this functionality useful.
+
+
+#### When we used pushState to open a modal (that didn't fire a request) outside of pjax, browser history got out of sync.
+
+* **Fix:** We added a `noRequest` option, which allows you to use pushState through pjax without actually sending a request, thus keeping pjax's history in sync.
+
+---
+
 # pjax
 
 
